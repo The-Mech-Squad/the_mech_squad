@@ -1,0 +1,2 @@
+curl -c cookies.txt -b cookies.txt https://www.space-track.org/ajaxauth/login -d 'identity=&password='
+curl --limit-rate 100K --cookie cookies.txt https://www.space-track.org/basicspacedata/query/class/boxscore/format/csv > api_data.csv
