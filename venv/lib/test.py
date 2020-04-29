@@ -16,17 +16,19 @@ data_clean.dropna(subset = ['PERIGEE'], inplace=True)
 data_clean.dropna(subset = ['PERIOD'], inplace=True)
 data_clean.dropna(subset = ['INCLINATION'], inplace=True)
 
-print(data_clean)
+nan_value = float("NaN")
+data_clean.replace("", nan_value, inplace=True)
+data_clean.dropna(subset = ['RCS_SIZE'], inplace=True)
 
 le = preprocessing.LabelEncoder()
 RCS_SIZE = le.fit_transform(list(data_clean["RCS_SIZE"]))
 joined = DataFrame(RCS_SIZE, columns=["rcs_size"])
-DECAY = data_clean['DECAY'].str.replace("-","").astype(int)
 
-xdata = data_clean.drop(["DECAY", "RCS_SIZE"], 1)
+xdata = data_clean
 xdata['rcs_size'] = joined
-
-print(xdata)
+xdata.dropna(subset = ['rcs_size'], inplace=True)
+DECAY = xdata['DECAY'].str.replace("-","").astype(int)
+xdata = data_clean.drop(["DECAY", "RCS_SIZE"], 1)
 
 predict = DECAY
 x = np.array(xdata)
