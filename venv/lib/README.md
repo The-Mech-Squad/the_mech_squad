@@ -6,7 +6,7 @@
 
 We started by training a simple model with the SATCAT data avaialble to us from Space-Track.org
 
-How2, our first model, took an input of 6 attributes and tried to predict the decay date of an object based on those values, running them through a linear regression.
+How2, our first model, took an input of 6 attributes and tried to predict the decay date of an object based on those values, running them through a linear regression algorithm.
 
 This basic algorithm resulted in a prediction that had 43% accuracy.
 
