@@ -1,17 +1,28 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
 
-<head>
-  <meta charset='utf-8'>
-  <link rel='stylesheet' type='text/css' href="{% static 'css/styles.css' %}" />
-  <title>Homepage</title>
-</head>
+<html=lang='en'>
 
-<body>
-  <h1>Hal's House</h1>
-  <p>welcome?</p>
-</body>
+  <head>
+    <script src="{%static '/js/require.js' %}"></script>
+    <script src="{%static '/js/satellite.js/dist/satellite.min.js' %}"></script>
+    <script src="{%static '/js/satellite-anton.js'%}"></script>
+    <script >
+    
+      window.onload = function () {
+        var satelliteCall = satrec.positionAndVelocity;
 
-</html>
+        document.getElementById('satellite').innerHTML = satrec.satelliteCall;
+      };
+
+    </script>
+  </head>
+
+  <body>
+
+    <p id='satellite'></p>
+
+  </body>
+
+  </html>
