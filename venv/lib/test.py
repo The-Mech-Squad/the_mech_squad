@@ -3,9 +3,11 @@ import keras
 import pandas as pd
 import numpy as np
 import sklearn
+import matplotlib.pyplot as pyplot
 from sklearn import linear_model, preprocessing
 from sklearn.utils import shuffle
 from pandas import DataFrame
+
 
 data = pd.read_csv("satcat-destorydatevalid.csv")
 
@@ -40,3 +42,9 @@ linear = linear_model.LinearRegression()
 linear.fit(x_train, y_train)
 accuracy = linear.score(x_test, y_test)
 print(accuracy)
+
+p = "LAUNCH_YEAR"
+pyplot.scatter(xdata[p], predict)
+pyplot.xlabel(p)
+pyplot.ylabel("decay prediction")
+pyplot.show()
