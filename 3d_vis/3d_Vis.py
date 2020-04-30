@@ -30,6 +30,7 @@ def makecubelimits(axis, centers=None, hw=None):
 
 from skyfield.api import Loader, EarthSatellite
 from skyfield.timelib import Time
+import mpld3 as mpld3
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -81,7 +82,7 @@ for phi in rads*np.arange(-75, 90, 15):
 
 
 # open file in read mode
-with open('API/TLE_data.csv', 'r') as TLE_Data:
+with open('../API/TLE_data.csv', 'r') as TLE_Data:
     # pass the file object to reader() to get the reader object
     TLE_List = DictReader(TLE_Data)
 # Iterate over each row in the csv using reader object
@@ -110,4 +111,5 @@ if True:
         print("centers are: ", centers)
         print("hw is:       ", hw)
 
+mpld3.save_html(fig, 'spacegraph.html')
 plt.show()
