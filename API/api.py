@@ -47,7 +47,8 @@ class MyError(Exception):
 uriBase = "https://www.space-track.org"
 requestLogin = "/ajaxauth/login"
 requestCmdAction = "/basicspacedata/query"
-requestCatalogue = "/class/tle_latest/ORDINAL/1/EPOCH/%3Enow-30/orderby/NORAD_CAT_ID/format/tle"
+requestCatalogue = "/class/tle_latest/orderby/ORDINAL asc/limit/10/format/csv/emptyresult/show"
+
 
 # Parameters to derive apoapsis and periapsis from mean motion (see https://en.wikipedia.org/wiki/Mean_motion)
 
@@ -98,10 +99,11 @@ with requests.Session() as session:
     # with open('api_data.csv', newline='') as file:
     #     writer = csv.writer(file)
     #     writer.write(resp.text)
-    #     session.close()
 
     f = open('api_data.csv', "w")
     f.write(resp.text)
     f.close()
+    
+    session.close()
 
 print("Completed session")

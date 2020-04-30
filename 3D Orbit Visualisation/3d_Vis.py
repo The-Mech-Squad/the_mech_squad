@@ -1,3 +1,4 @@
+from csv import reader
 def makecubelimits(axis, centers=None, hw=None):
     lims = ax.get_xlim(), ax.get_ylim(), ax.get_zlim()
     if centers == None:
@@ -27,17 +28,12 @@ def makecubelimits(axis, centers=None, hw=None):
     return centers, hw
 
 
-TLE_list = ["""1 43205U 18017A   18038.05572532 +.00020608 -51169-6 +11058-3 0  9993
-2 43205 029.0165 287.1006 3403068 180.4827 179.1544 08.75117793000017""", """1  2403U 66077A   20118.79611995 -.00000028 +00000-0 -14773-1 0  9999
-2  2403 090.2467 252.2126 0022660 153.0393 207.1640 08.59868212333793""", """1  2226U 65109D   20118.83409247 +.00000053 +00000-0 +51105-4 0  9996
-2  2226 089.0732 159.8577 0250258 047.7952 314.4147 13.50388087651112"""]
-
-
 from skyfield.api import Loader, EarthSatellite
 from skyfield.timelib import Time
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
+from csv import DictReader
 
 halfpi, pi, twopi = [f*np.pi for f in (0.5, 1, 2)]
 degs, rads = 180/pi, pi/180
@@ -45,6 +41,8 @@ degs, rads = 180/pi, pi/180
 load = Loader('~/Documents/fishing/SkyData')
 data = load('de421.bsp')
 ts   = load.timescale()
+
+satellites = []
 
 planets = load('de421.bsp')
 earth   = planets['earth']
@@ -55,7 +53,8 @@ hours = np.arange(0, 3, 0.01)
 time = ts.utc(2018, 2, 7, hours)
 
 def orbit(TLE):
-    L1, L2 = TLE.splitlines()
+    L1 = row['TLE_LINE1']
+    L2 = row['TLE_LINE2']
     Roadster = EarthSatellite(L1, L2)
     print(Roadster.epoch.tt)
     return Roadster.at(time).position.km
@@ -80,7 +79,15 @@ for phi in rads*np.arange(-75, 90, 15):
     lat = re*np.vstack((cth*cph, sth*cph, zth+sph))
     lats.append(lat)
 
-satellites = map(orbit, TLE_list)
+
+# open file in read mode
+with open('API/TLE_data.csv', 'r') as TLE_Data:
+    # pass the file object to reader() to get the reader object
+    TLE_List = DictReader(TLE_Data)
+# Iterate over each row in the csv using reader object
+    for row in TLE_List:
+        # row variable is a list that represents a row in csv
+        satellites.append(orbit(row))
 
 
 if True:
