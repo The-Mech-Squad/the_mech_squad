@@ -11,12 +11,12 @@ from pandas import DataFrame
 
 data = pd.read_csv("satcat-destorydatevalid.csv")
 
-data_clean = data.drop(['INTLDES','NORAD_CAT_ID','OBJECT_TYPE','SATNAME','COUNTRY','LAUNCH', 'SITE', 'COMMENT', 'COMMENTCODE', 'FILE', 'RCSVALUE', 'LAUNCH_NUM','LAUNCH_PIECE','CURRENT','OBJECT_NAME','OBJECT_ID','OBJECT_NUMBER'], axis=1)
+data_clean = data.drop(['INTLDES', 'PERIOD', 'INCLINATION', 'NORAD_CAT_ID','OBJECT_TYPE','SATNAME','COUNTRY','LAUNCH', 'SITE', 'COMMENT', 'COMMENTCODE', 'FILE', 'RCSVALUE', 'LAUNCH_NUM','LAUNCH_PIECE','CURRENT','OBJECT_NAME','OBJECT_ID','OBJECT_NUMBER'], axis=1)
 
 data_clean.dropna(subset = ['APOGEE'], inplace=True)
 data_clean.dropna(subset = ['PERIGEE'], inplace=True)
-data_clean.dropna(subset = ['PERIOD'], inplace=True)
-data_clean.dropna(subset = ['INCLINATION'], inplace=True)
+# data_clean.dropna(subset = ['PERIOD'], inplace=True)
+# data_clean.dropna(subset = ['INCLINATION'], inplace=True)
 
 nan_value = float("NaN")
 data_clean.replace("", nan_value, inplace=True)
@@ -29,22 +29,27 @@ joined = DataFrame(RCS_SIZE, columns=["rcs_size"])
 xdata = data_clean
 xdata['rcs_size'] = joined
 xdata.dropna(subset = ['rcs_size'], inplace=True)
-DECAY = xdata['DECAY'].str.replace("-","").astype(int)
+DECAY = xdata['DECAY'].str[:-6].astype(int)
+LIFE = DECAY - xdata['LAUNCH_YEAR']
 xdata = data_clean.drop(["DECAY", "RCS_SIZE"], 1)
 
-predict = DECAY
-x = np.array(xdata)
-y = np.array(predict)
+print(xdata.head(5))
+# predict = LIFE
+# x = np.array(xdata)
+# y = np.array(predict)
+#
+# x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
+#
+# linear = linear_model.LinearRegression()
+# linear.fit(x_train, y_train)
+# accuracy = linear.score(x_test, y_test)
+# print(accuracy)
 
-x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
-
-linear = linear_model.LinearRegression()
-linear.fit(x_train, y_train)
-accuracy = linear.score(x_test, y_test)
-print(accuracy)
-
-p = "LAUNCH_YEAR"
-pyplot.scatter(xdata[p], predict)
-pyplot.xlabel(p)
-pyplot.ylabel("decay prediction")
-pyplot.show()
+print("Coefficient: \n", linear.coef_)
+print("Intercept: \n", linear.intercept_)
+#
+# p = "LAUNCH_YEAR"
+# pyplot.scatter(xdata[p], predict)
+# pyplot.xlabel(p)
+# pyplot.ylabel("decay prediction")
+# pyplot.show()
