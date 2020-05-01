@@ -33,17 +33,17 @@ DECAY = xdata['DECAY'].str[:-6].astype(int)
 LIFE = DECAY - xdata['LAUNCH_YEAR']
 xdata = data_clean.drop(["DECAY", "RCS_SIZE"], 1)
 
-print(xdata.head(5))
-# predict = LIFE
-# x = np.array(xdata)
-# y = np.array(predict)
-#
-# x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
-#
-# linear = linear_model.LinearRegression()
-# linear.fit(x_train, y_train)
-# accuracy = linear.score(x_test, y_test)
-# print(accuracy)
+# print(xdata.head(5))
+predict = LIFE
+x = np.array(xdata)
+y = np.array(predict)
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
+
+linear = linear_model.LinearRegression()
+linear.fit(x_train, y_train)
+accuracy = linear.score(x_test, y_test)
+print(accuracy)
 
 print("Coefficient: \n", linear.coef_)
 print("Intercept: \n", linear.intercept_)
