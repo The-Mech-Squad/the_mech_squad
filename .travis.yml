@@ -28,9 +28,9 @@ before_install:
 install:
   - pip install django==$DJANGO --quiet
   - pip install psycopg2 --quiet
-  
-before_script:
-  - psql -c "CREATE DATABASE TLE;" -U postgres
+
+# before_script:
+#   - psql -c "CREATE DATABASE TLE;" -U postgres
 
 script:
   - python manage.py syncdb --noinput
