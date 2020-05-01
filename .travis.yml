@@ -1,0 +1,37 @@
+#   A basic travis.yml boilerplate for Django projects
+#
+#   The set-up assumes a postgreSQL database.
+#
+#   Replace the following variables in the code:
+# * your_project_settings
+# * your_github_username //
+# * your_repo //
+
+language: python
+
+python:
+  - 3.7
+  - 3.7.6
+  - 3.8.1
+  - 3.8.2
+
+services: postgresql
+
+env:
+  - DJANGO=3.0.5
+
+before_install:
+  - export DJANGO_SETTINGS_MODULE=./orbital_decay/settings.py
+  - export PYTHONPATH=$HOME/builds/The-Mech-Squad/the_mech_squad
+  - export PIP_USE_MIRRORS=true
+
+install:
+  - pip install -r requirements.txt
+  - pip install django==$DJANGO --quiet
+  - pip install psycopg2 --quiet
+
+before_script:
+  - psql -c "CREATE DATABASE TLE;" -U postgres
+
+script:
+  - python manage.py syncdb --noinput
