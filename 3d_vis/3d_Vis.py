@@ -7,9 +7,9 @@ def makecubelimits(axis, centers=None, hw=None):
     if hw == None:
         widths  = [pair[1] - pair[0] for pair in lims]
         hw      = 0.5*max(widths)
-        ax.set_xlim(centers[0]-hw, centers[0]+hw)
-        ax.set_ylim(centers[1]-hw, centers[1]+hw)
-        ax.set_zlim(centers[2]-hw, centers[2]+hw)
+        ax.set_xlim(centers[0]-hw, centers[0]+hw, auto=True)
+        ax.set_ylim(centers[1]-hw, centers[1]+hw, auto=True)
+        ax.set_zlim(centers[2]-hw, centers[2]+hw, auto=True)
         print("hw was None so set to:", hw)
     else:
         try:
@@ -110,6 +110,7 @@ if True:
 
         print("centers are: ", centers)
         print("hw is:       ", hw)
-
+mpld3.fig_to_html(fig, no_extras=False, template_type='simple')
 mpld3.save_html(fig, 'spacegraph.html')
+mpld3.save_json(fig, 'spacegraph-alt.html')
 plt.show()
