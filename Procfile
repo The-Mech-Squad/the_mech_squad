@@ -1,1 +1,1 @@
-web: gunicorn the_mech_squad.wsgi
+web: gunicorn orbital_decay.wsgi
