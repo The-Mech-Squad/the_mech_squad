@@ -1,3 +1,9 @@
-body{
-  background-color: blue;
+#cesiumContainer{width: 1400px;
+  height:800px;
+   display: inline-block;}
+
+
+.search-box{
+  display: inline-block;
+  vertical-align: top;
 }

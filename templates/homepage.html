@@ -5,19 +5,15 @@
 
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<meta charset="utf-8">
-	<script src="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Cesium.js"></script>
-	<link href="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 </head>
 
 <body>
   <h1>Satellite Viewer</h1>
-	<div id="cesiumContainer" style="width: 1400px; height:800px"></div>
-	<script>
-		var viewer = new Cesium.Viewer('cesiumContainer');
-		var dataSrc = Cesium.CzmlDataSource.load("./static/js/simple.czml");
-		viewer.dataSources.add(dataSrc);
-	</script>
+  <div class="text">
+<p>this shows satellites, kessler syndrome</p>
+<button type="button" name="button" class="hal"><a href="/hal">  Go to hal</a></button>
+<button type="button" name="button" class="about"><a href="/about">About this thing</a></button>
+  </div>
 </body>
 
 </html>
