@@ -1,26 +1,23 @@
 language: python
 python:
-- 3.7.7
-- 3.7.6
+  - 3.7.7
+  - 3.7.6
 env:
-- DJANGO=3.0.5
+  - DJANGO=3.0.5
 deploy:
   provider: heroku
   api_key:
     secure: hc1uk1PouPZQHfWlO2bdtDaClv8xMnMkPXuyJbbunw7M/frcUWe4wGJsXhKMVFSbRnvlV2XjZ3Q3Rl3E68vIIgSjeoQBDdUAdy20UihPu9ddoLxnX+MtXmjjsKb270V3VghimaTyFDLybD+DL31wF2/mcZAROtMorSUX/leKQL+uZsD9m6r2vcoLFOZ/Z1pcv5vy17w3Jz/SNkHhFvBNuYnxFm82raKdIm+QtiZAxxzfMezY70AIbRnqW/1u/7w0n2TIVTGcQ9PEN6S1HJVNTW8L2+5xyFnI6Cu3VQTDrLqOuY2cUiOg1qjVik26TP3pEOYMzC9fVQOnq8ydKMF80nWv10Ho7OeE3i3AONLfEI1agtpP37+MhcUSuyNPAv/QeOMx2ik7WWg7HexCrfBUbKE9Nim+gj6sQJo7Hm9zYPSSxLudjyOoGHR+yCXmYmxwCymbref5tQo6PpOVMkHMwyzdEnDsR4O30J9Hc2ZsJm1ktXG50JS4sWR9qjVeWU74t0w3NR5IuBB6RkH7YaZhzIphoOZrw9YKgPlph0rgmSrh+VmdIzXo9V0VftJZ73m4AQR/yOX9w3MUcy1LTnF1KPytFhmG0akIOGwyOR66GO2u3kDY7sB0GeuaQlqI0YnswxYbtAkgRWs8hw30Aq3FMVewS91hEw0+haVsxtUCMdw=
-  app: space-trash
+  app: aqueous-retreat-62435
   on:
     branch: debug
 
-
-  
-
 before_install:
-- export DJANGO_SETTINGS_MODULE=./orbital_decay/settings.py
-- export PYTHONPATH=$HOME/builds/The-Mech-Squad/the_mech_squad
-- export PIP_USE_MIRRORS=true
+  - export DJANGO_SETTINGS_MODULE=./orbital_decay/settings.py
+  - export PYTHONPATH=$HOME/builds/The-Mech-Squad/the_mech_squad
+  - export PIP_USE_MIRRORS=true
 install:
-- pip install django==$DJANGO --quiet
-- pip install -r requirements.txt
+  - pip install django==$DJANGO --quiet
+  - pip install -r requirements.txt
 script:
-- echo "skipping tests"
+  - echo "skipping tests"
