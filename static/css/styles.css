@@ -1,6 +1,8 @@
-#cesiumContainer{width: 1400px;
-  height:800px;
-   display: inline-block;}
+#cesiumContainer{
+  width: 70%;
+  /* height:800px; */
+   display: inline-block;
+  }
 
 
 body{
@@ -23,11 +25,11 @@ body{
 }
 .dark-bg{
   background-color: #333;
-
+  width: 100%;
 }
-.f-left{
+/* .f-left{
   float: left
 }
 .f-right{
   float: right
-}
+} */
