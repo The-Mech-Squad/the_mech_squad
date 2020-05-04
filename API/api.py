@@ -48,7 +48,7 @@ class MyError(Exception):
 uriBase = "https://www.space-track.org"
 requestLogin = "/ajaxauth/login"
 requestCmdAction = "/basicspacedata/query"
-requestCatalogue = "class/tle_latest/orderby/EPOCH asc/limit/5/format/csv/emptyresult/show"
+requestCatalogue = "/class/tle_latest/orderby/EPOCH asc/limit/5/format/csv/emptyresult/show"
 
 
 # Parameters to derive apoapsis and periapsis from mean motion (see https://en.wikipedia.org/wiki/Mean_motion)
@@ -114,9 +114,11 @@ try:
                                  database="sat_data")
    cursor = connection.cursor()
 
-   postgres_insert_query = """ INSERT INTO sat_data (ORDINAL, COMMENT, ORIGINATOR, NORAD_CAT_ID, OBJECT_NAME, OBJECT_TYPE, CLASSIFICATION_TYPE, INTLDES, EPOCH, EPOCH_MICROSECONDS, MEAN_MOTION, ECCENTRICITY, INCLINATION, RA_OF_ASC_NODE,	ARG_OF_PERICENTER, MEAN_ANOMALY, EPHEMERIS_TYPE, ELEMENT_SET_NO, REV_AT_EPOCH, BSTAR, MEAN_MOTION_DOT, MEAN_MOTION_DDOT, FILE, TLE_LINE0, TLE_LINE1, TLE_LINE2,	OBJECT_ID, OBJECT_NUMBER, SEMIMAJOR_AXIS, PERIOD, APOGEE, PERIGEE, DECAYED) VALUES (%s,%s,%s)"""
-   record_to_insert = (resp.text)
-   cursor.execute(postgres_insert_query, record_to_insert)
+#    (ID serial PRIMARY KEY, ORDINAL INT2, COMMENT VARCHAR(50), ORIGINATOR VARCHAR(50), NORAD_CAT_ID INT2, OBJECT_NAME VARCHAR(50), OBJECT_TYPE VARCHAR(50), CLASSIFICATION_TYPE VARCHAR(50), INTLDES VARCHAR(50), EPOCH DATE, EPOCH_MICROSECONDS INT8, MEAN_MOTION FLOAT8, ECCENTRICITY FLOAT8, INCLINATION FLOAT8, RA_OF_ASC_NODE FLOAT8, ARG_OF_PERICENTER FLOAT8, MEAN_ANOMALY FLOAT8, EPHEMERIS_TYPE INT2, ELEMENT_SET_NO INT4, REV_AT_EPOCH INT4, BSTAR INT2, MEAN_MOTION_DOT FLOAT8, MEAN_MOTION_DDOT INT2, FILE INT4, TLE_LINE0 VARCHAR(50), TLE_LINE1 VARCHAR(50), TLE_LINE2 VARCHAR(50), OBJECT_ID VARCHAR(50), OBJECT_NUMBER INT2, SEMIMAJOR_AXIS FLOAT4, PERIOD FLOAT4, APOGEE FLOAT4, PERIGEE FLOAT4, DECAYED INT2);
+
+   postgres_insert_query = """ INSERT INTO orbits (ORDINAL, COMMENT, ORIGINATOR, NORAD_CAT_ID, OBJECT_NAME, OBJECT_TYPE, CLASSIFICATION_TYPE, INTLDES, EPOCH, EPOCH_MICROSECONDS, MEAN_MOTION, ECCENTRICITY, INCLINATION, RA_OF_ASC_NODE, ARG_OF_PERICENTER, MEAN_ANOMALY, EPHEMERIS_TYPE, ELEMENT_SET_NO, REV_AT_EPOCH, BSTAR, MEAN_MOTION_DOT, MEAN_MOTION_DDOT, FILE, TLE_LINE0, TLE_LINE1, TLE_LINE2, OBJECT_ID, OBJECT_NUMBER, SEMIMAJOR_AXIS, PERIOD, APOGEE, PERIGEE, DECAYED) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s); """
+   record_to_insert = (resp.content)
+   cursor.execute(postgres_insert_query, (record_to_insert,))
 
    connection.commit()
    count = cursor.rowcount
