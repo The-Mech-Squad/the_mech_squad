@@ -119,3 +119,5 @@ GitHub.sublime-settings
 API/SLTrack.ini
 .vscode
 
+# API Creds
+c_view/SLTrack.ini
