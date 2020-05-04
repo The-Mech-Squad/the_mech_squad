@@ -1,9 +1,11 @@
 language: python
+
 python:
-  - 3.7.7
   - 3.7.6
+
 env:
   - DJANGO=3.0.5
+
 deploy:
   provider: heroku
   api_key:
@@ -12,12 +14,15 @@ deploy:
   edge: true
   on:
     branch: master
+
 before_install:
   - export DJANGO_SETTINGS_MODULE=./orbital_decay/settings.py
   - export PYTHONPATH=$HOME/builds/The-Mech-Squad/the_mech_squad
   - export PIP_USE_MIRRORS=true
+
 install:
   - pip install django==$DJANGO --quiet
   - pip install -r requirements.txt
+
 script:
   - echo "skipping tests"

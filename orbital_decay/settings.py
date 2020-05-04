@@ -26,7 +26,10 @@ SECRET_KEY = '(!@i(j$f@mr6kw-8cdg2#v#q8molh4-6k*mj_0hir0ikbc7-jh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['space-trash.herokuapp.com']
+ALLOWED_HOSTS = [
+    'space-trash.herokuapp.com',
+    'localhost',
+]
 
 
 # Application definition
