@@ -3,7 +3,10 @@
    display: inline-block;}
 
 
-
+body{
+  background-color: #333;
+  color: #fff;
+}
 
 
 .left{
@@ -14,4 +17,17 @@
 }
 .divs{
   margin-top: 10px;
+}
+.bg-image{
+  background-image: url(../assets/orbitview.jpg);
+}
+.dark-bg{
+  background-color: #333;
+
+}
+.f-left{
+  float: left
+}
+.f-right{
+  float: right
 }

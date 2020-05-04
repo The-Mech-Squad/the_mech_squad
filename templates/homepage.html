@@ -5,15 +5,35 @@
 
 <head>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="{%static '/css/styles.css' %}">
 </head>
 
-<body>
-  <h1>Satellite Viewer</h1>
-  <div class="text">
-<p>this shows satellites, kessler syndrome</p>
-<button type="button" name="button" class="hal btn btn-light"><a href="/hal">  Go to hal</a></button>
-<button type="button" name="button" class="about btn btn-light"><a href="/about">About this thing</a></button>
-  </div>
-</body>
+<body class="text-center bg-image">
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" >
+    <header class="masthead mb-auto dark-bg ">
+      <div class="inner">
+        
+        <nav class="nav nav-masthead justify-content-center">
+          <h3 class="masthead-brand f-left">Space trash</h3>
+          <div class="f-right">
+            <a class="nav-link active" href="/hal">Go to hal</a>
+          <a class="nav-link" href="/about">About this thing</a>
+          </div>
+          
+        </nav>
+      </div>
+    </header>
 
+    <main class="inner cover">
+      <h1>Welcome</h1>
+      <div class="text">
+      <p>this shows satellites, kessler syndrome is real</p>
+      <button type="button" name="button" class="hal btn btn-light"><a href="/hal">  Go to hal</a></button>
+      <button type="button" name="button" class="about btn btn-light"><a href="/about">About this thing</a></button>
+    </div>
+    </main>
+    
+  </div>
+  
+</body>
 </html>
