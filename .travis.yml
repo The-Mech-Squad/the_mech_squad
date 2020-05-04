@@ -1,33 +1,23 @@
-#   A basic travis.yml boilerplate for Django projects
-#
-#   The set-up assumes a postgreSQL database.
-#
-#   Replace the following variables in the code:
-# * your_project_settings
-# * your_github_username //
-# * your_repo //
-
 language: python
-
 python:
   - 3.7.7
   - 3.7.6
-
 env:
   - DJANGO=3.0.5
-
+deploy:
+  provider: heroku
+  api_key:
+    secure: br5sJkAIR5dNWzH3KbPhMaR7MbTAiDA5ZAnq+vNnon2TY8zEfajJM0oxOxpEL3/3npJ46ZfxkzaCXXvZVG0EtGElkbU/kdDTP3d1N5jroY1YubpXxrvkKQxEelpnWbilG4l8ozrtpUkezMJI9gJyNw7dG3IJB0HmyBHm6Qi+ZbvsMdVHuQc+a+1jWGoJo6AFpVzZhFyACeRMVugPRY3ozt+CWUbFMLKGACsDzE99Mjgz2GSodnxH14HbDaajwaeEGFkHsTTMXQpETPzX8zrWgLSDoZUvVmJyAWspBHy3Nd1cRHb81TCFuVyC1HALXvwjoFOkxI+eN0vevHXY1YojTzvW77EvDyqkvbXgVvSs/KV2Kn4EQG/mXd3GCw+ydYBjNZ0yx/9E4vek/JN9ylT87MxyNMgBySXx7b2OjiI4tWAIzcGt+eJwh4BR6SwLUJ6OpVpN7Jm2vwL5NAzyb42NsRsJcHxJ7xIZ6l6C9G6UHXm2GxrF8WUJxtk/GoxiEVaRCouVo+wDz6Db8qRYeS6TziUT0U2FqOYwSB36lsayLV3g0sMQmI03tCmtOpoBBM9lB5HUJNtlYWHjhlu/bRF07eD3EkFfEK6wcdXZxqN+tQpeDzj1zfpuWFRhhZR/BUEV4Zg7TRF8XeZ1JxWCc1RLQyq2/aodGdB4ipPtssFQBZI=
+  app: aqueous-retreat-62435
+  edge: true
+  on:
+    branch: debug
 before_install:
   - export DJANGO_SETTINGS_MODULE=./orbital_decay/settings.py
   - export PYTHONPATH=$HOME/builds/The-Mech-Squad/the_mech_squad
   - export PIP_USE_MIRRORS=true
-  # - python manage.py migrate
-
 install:
   - pip install django==$DJANGO --quiet
   - pip install -r requirements.txt
-
 script:
   - echo "skipping tests"
-  # - python manage.py syncdb --noinput
-  # - python manage.py migrate
-  # - python manage.py test
