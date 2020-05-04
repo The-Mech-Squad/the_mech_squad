@@ -11,7 +11,7 @@ deploy:
   app: aqueous-retreat-62435
   edge: true
   on:
-    branch: debug
+    branch: master
 before_install:
   - export DJANGO_SETTINGS_MODULE=./orbital_decay/settings.py
   - export PYTHONPATH=$HOME/builds/The-Mech-Squad/the_mech_squad
