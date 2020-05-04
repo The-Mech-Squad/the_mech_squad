@@ -26,7 +26,7 @@ SECRET_KEY = '(!@i(j$f@mr6kw-8cdg2#v#q8molh4-6k*mj_0hir0ikbc7-jh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['aqueous-retreat-62435.herokuapp.com']
 
 
 # Application definition
