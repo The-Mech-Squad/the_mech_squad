@@ -24,6 +24,7 @@
 ##  http://www.gnu.org/licenses/.
 ##
 
+import psycopg2
 import requests
 import csv
 import json
@@ -47,7 +48,7 @@ class MyError(Exception):
 uriBase = "https://www.space-track.org"
 requestLogin = "/ajaxauth/login"
 requestCmdAction = "/basicspacedata/query"
-requestCatalogue = "/class/tle_latest/orderby/ORDINAL asc/limit/10/format/csv/emptyresult/show"
+requestCatalogue = "class/tle_latest/orderby/EPOCH asc/limit/5/format/csv/emptyresult/show"
 
 
 # Parameters to derive apoapsis and periapsis from mean motion (see https://en.wikipedia.org/wiki/Mean_motion)
@@ -100,10 +101,38 @@ with requests.Session() as session:
     #     writer = csv.writer(file)
     #     writer.write(resp.text)
 
-    f = open('api_data.csv', "w")
-    f.write(resp.text)
-    f.close()
+    # f = open('api_data.csv', "w")
+    # f.write(resp.text)
+    # f.close()
     
-    session.close()
+    # session.close()
+
+
+try:
+   connection = psycopg2.connect(host="127.0.0.1",
+                                 port="5432",
+                                 database="sat_data")
+   cursor = connection.cursor()
+
+   postgres_insert_query = """ INSERT INTO sat_data (ORDINAL, COMMENT, ORIGINATOR, NORAD_CAT_ID, OBJECT_NAME, OBJECT_TYPE, CLASSIFICATION_TYPE, INTLDES, EPOCH, EPOCH_MICROSECONDS, MEAN_MOTION, ECCENTRICITY, INCLINATION, RA_OF_ASC_NODE,	ARG_OF_PERICENTER, MEAN_ANOMALY, EPHEMERIS_TYPE, ELEMENT_SET_NO, REV_AT_EPOCH, BSTAR, MEAN_MOTION_DOT, MEAN_MOTION_DDOT, FILE, TLE_LINE0, TLE_LINE1, TLE_LINE2,	OBJECT_ID, OBJECT_NUMBER, SEMIMAJOR_AXIS, PERIOD, APOGEE, PERIGEE, DECAYED) VALUES (%s,%s,%s)"""
+   record_to_insert = (resp.text)
+   cursor.execute(postgres_insert_query, record_to_insert)
+
+   connection.commit()
+   count = cursor.rowcount
+   print(count, "Record inserted successfully into mobile table")
+
+except (Exception, psycopg2.Error) as error:
+    if(connection):
+        print("Failed to insert record into mobile table", error)
+
+finally:
+    #closing database connection.
+    if(connection):
+        cursor.close()
+        connection.close()
+        print("PostgreSQL connection is closed")
+
+session.close()
 
 print("Completed session")
