@@ -24,6 +24,7 @@
 ##  http://www.gnu.org/licenses/.
 ##
 
+import psycopg2
 import requests
 import csv
 import json
@@ -47,7 +48,7 @@ class MyError(Exception):
 uriBase = "https://www.space-track.org"
 requestLogin = "/ajaxauth/login"
 requestCmdAction = "/basicspacedata/query"
-requestCatalogue = "/class/tle_latest/orderby/ORDINAL asc/limit/10/format/csv/emptyresult/show"
+requestCatalogue = "/class/tle_latest/orderby/EPOCH asc/limit/5/format/csv/emptyresult/show"
 
 
 # Parameters to derive apoapsis and periapsis from mean motion (see https://en.wikipedia.org/wiki/Mean_motion)
@@ -74,13 +75,12 @@ config = configparser.ConfigParser()
 config.read("./SLTrack.ini")
 configUsr = config.get("configuration", "username")
 configPwd = config.get("configuration", "password")
-configOut = config.get("configuration", "output")
 siteCred = {'identity': configUsr, 'password': configPwd}
 
 # use requests package to drive the RESTful session with space-track.org
 with requests.Session() as session:
     # run the session in a with block to force session to close if we exit
-
+    print("Starting API request.....")
     # need to log in first. note that we get a 200 to say the web site got the data, not that we are logged in
     resp = session.post(uriBase + requestLogin, data=siteCred)
     if resp.status_code != 200:
@@ -92,18 +92,23 @@ with requests.Session() as session:
         print(resp)
         raise MyError(resp, "GET fail on request for Starlink satellites")
 
-   
-
-   
-
-    # with open('api_data.csv', newline='') as file:
-    #     writer = csv.writer(file)
-    #     writer.write(resp.text)
-
     f = open('api_data.csv', "w")
     f.write(resp.text)
     f.close()
-    
-    session.close()
 
-print("Completed session")
+    session.close()
+    
+print("Completed API session.....")
+print("Writing Data to Database.....")
+
+conn = psycopg2.connect("host=localhost dbname=sat_data")
+cur = conn.cursor()
+with open('api_data.csv', 'r') as f:
+    # Notice that we don't need the `csv` module.
+    next(f) # Skip the header row.
+    cur.copy_from(f, 'orbits', sep=',')
+
+conn.commit()
+
+print("Complete")
+
