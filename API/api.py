@@ -75,7 +75,6 @@ config = configparser.ConfigParser()
 config.read("./SLTrack.ini")
 configUsr = config.get("configuration", "username")
 configPwd = config.get("configuration", "password")
-configOut = config.get("configuration", "output")
 siteCred = {'identity': configUsr, 'password': configPwd}
 
 # use requests package to drive the RESTful session with space-track.org
