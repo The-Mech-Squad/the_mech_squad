@@ -1,1 +1,1 @@
-web: gunicorn orbital_decay.wsgi
+web: gunicorn orbital_decay.wsgi --log-file -
