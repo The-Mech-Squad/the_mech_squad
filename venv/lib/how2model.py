@@ -31,17 +31,11 @@ le = preprocessing.LabelEncoder()
 RCS_SIZE = le.fit_transform(list(data_clean["RCS_SIZE"]))
 joined = DataFrame(RCS_SIZE, columns=["rcs_size"])
 
-
 xdata = data_clean.drop(['RCS_SIZE'], 1)
-
 xdata['rcs_size'] = joined
-print(xdata)
 xdata.dropna(subset = ['rcs_size'], inplace=True)
-print(xdata)
 DECAY = xdata['DECAY'].str.replace("-","").astype(int)
 xdata = xdata.drop(["DECAY"], 1)
-
-print(xdata)
 
 predict = DECAY
 x = np.array(xdata)
