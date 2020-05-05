@@ -11,5 +11,5 @@ urlpatterns = [
     path('', views.homepage ),
     path('about/', views.about),
 ]
-
+handler404 = views.handler404
 urlpatterns += staticfiles_urlpatterns()
