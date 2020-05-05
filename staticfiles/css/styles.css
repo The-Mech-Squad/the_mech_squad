@@ -65,15 +65,6 @@ body{
     height: 90vh;
 }
 
-/* .mastfoot{ */
-  /* position: fixed; */
-  /* bottom: 0;
-  width: 100%;
-  position: relative;
-  min-height: 100vh; */
-
-/* } */
-
 .footer{
   position: absolute;
   bottom: 0;
@@ -90,9 +81,3 @@ body{
 .inner{
   vertical-align: bottom;
 }
-/* .f-left{
-  float: left
-}
-.f-right{
-  float: right
-} */
