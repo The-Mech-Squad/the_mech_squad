@@ -15,7 +15,7 @@
   </head>
   <body class="text-center">
     <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
-      <header class="masthead mb-auto light-bg ">
+      <header class="masthead mb-auto light-bg shadow p-3 mb-5 bg-white rounded">
         <div class="inner">
 
           <nav class="nav nav-masthead justify-content-between">
@@ -30,6 +30,7 @@
       </header>
       <div class="container">
         <div class="text-left">
+          <div class="inner-text">
         <h2>  The idea</h2>
 <p>A long time ago, in a galaxy far far away, a group of Makers decided to create an application. Its mission? To create a predictive model which could help solve the problem of space debris</p>
 
@@ -46,17 +47,20 @@ let the user input the predictions they would like our model, How2, to make for 
 <li>
 generate predictions and accuracy metrics for a machine learning model, using the linear regression algorithm.</li>
 </ul>
-
+</div>
+<div class="inner-text">
 <h2>User interaction</h2>
 <p>As a user on the site, you can tell How2 what he should be predicting and which values he should be using to make his predictions. Not only will you be able to see his expected results but you'll also be able to see how accurate his predictions were.</p>
-
+</div>
+<div class="inner-text">
 <h2>Design decisions</h2>
 <p>To help provide context for the project we opted to have a landing page that would explain the concept and briefly outline the actions that a user could take.</p>
 
 <p>We implemented a postgres database that would be populated by the API once every 24 hours. The goal was to streamline the amount of calls we made to the API since the amount of data being processed could affect the speed of the application.</p>
 
 <p>The visualisation that displays the satellite data to the user requires a great deal of processing power so we decided to limit the number of objects that could be displayed at one time. A user can search for a specific object which can render in another's place.</p>
-
+</div>
+<div class="inner-text">
 <h2>Technologies used</h2>
 <ul>
   <li> Django </li>
@@ -72,5 +76,6 @@ generate predictions and accuracy metrics for a machine learning model, using th
         </div>
       </div>
     </div>
+  </div>
   </body>
 </html>

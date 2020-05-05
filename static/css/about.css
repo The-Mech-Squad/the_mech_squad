@@ -9,9 +9,19 @@ p, li, h2{font-family: 'Montserrat', sans-serif;}
 p, li{font-size: 18px;}
 
 .text-left{
-  margin-top: 10px;
+  margin-top: 50px;
+  background: #d3d3d32e;
+    padding: 20px;
 }
 
 .nav-link{
   color: #333;
+}
+
+.shadow {
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.35)!important;
+}
+
+.inner-text {
+    padding-top: 15px;
 }
