@@ -9,6 +9,7 @@ urlpatterns = [
     path('showcase/', include('showcase.urls')),
     path('hal/', views.hal),
     path('', views.homepage ),
+    path('about/', views.about),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
