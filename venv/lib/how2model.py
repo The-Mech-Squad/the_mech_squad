@@ -11,7 +11,7 @@ import pickle
 
 data = pd.read_csv("leo_new_data.csv")
 
-data2 = data[["APOGEE", "PERIGEE", "INCLINATION", "DECAY", "PERIOD", "RCS_SIZE"]]
+data2 = data[["APOGEE", "PERIGEE", "INCLINATION", "DECAY", "PERIOD", "RCS_SIZE", "LAUNCH_YEAR"]]
 
 data_clean = pd.DataFrame(data2)
 
@@ -20,6 +20,7 @@ data_clean.dropna(subset = ['PERIGEE'], inplace=True)
 data_clean.dropna(subset = ['PERIOD'], inplace=True)
 data_clean.dropna(subset = ['INCLINATION'], inplace=True)
 data_clean.dropna(subset = ['DECAY'], inplace=True)
+data_clean.dropna(subset = ['LAUNCH_YEAR'], inplace=True)
 
 nan_value = float("NaN")
 data_clean.replace("", nan_value, inplace=True)
@@ -34,10 +35,12 @@ joined = DataFrame(RCS_SIZE, columns=["rcs_size"])
 xdata = data_clean.drop(['RCS_SIZE'], 1)
 xdata['rcs_size'] = joined
 xdata.dropna(subset = ['rcs_size'], inplace=True)
-DECAY = xdata['DECAY'].str.replace("-","").astype(int)
+# PERIOD = xdata['PERIOD']
+DECAY = xdata['DECAY'].str[:-6].astype(int)
+LIFE = DECAY - xdata['LAUNCH_YEAR']
 xdata = xdata.drop(["DECAY"], 1)
 
-predict = DECAY
+predict = LIFE
 x = np.array(xdata)
 y = np.array(predict)
 
@@ -48,8 +51,8 @@ linear.fit(x_train, y_train)
 accuracy = linear.score(x_test, y_test)
 print(accuracy)
 
-# with open("how2model.pickle", "wb") as f:
-#     pickle.dump(linear, f)
-#
-# pickle_in = open("how2model.pickle", "rb")
-# linear = pickle.load(pickle_in)
+with open("how2model.pickle", "wb") as f:
+    pickle.dump(linear, f)
+
+pickle_in = open("how2model.pickle", "rb")
+linear = pickle.load(pickle_in)
