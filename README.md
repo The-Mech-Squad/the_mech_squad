@@ -2,6 +2,8 @@
 
 ## Space-Trash
 
+[![Build Status](https://travis-ci.org/The-Mech-Squad/the_mech_squad.svg?branch=master)](https://travis-ci.org/The-Mech-Squad/the_mech_squad)
+
 The educational application that visualises satellites and space debris, using machine learning to try and predict what these objects could look like in the future.
 
 ### The idea
