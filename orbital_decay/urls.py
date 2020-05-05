@@ -9,6 +9,7 @@ urlpatterns = [
     path('showcase/', include('showcase.urls')),
     path('hal/', views.hal),
     path('', views.homepage ),
+    path('about/', views.about),
 ]
-
+handler404 = views.handler404
 urlpatterns += staticfiles_urlpatterns()
