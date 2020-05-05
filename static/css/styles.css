@@ -37,12 +37,11 @@ body{
 }
 
 .left{
-  width: 100%;
+  width: 20%;
   display: block;
-  /* vertical-align: top; */ 
+  /* vertical-align: top; */
   /* margin-left: 10px; */
   margin: 0px auto;
-
   padding-top: 20px;
 }
 .divs{
