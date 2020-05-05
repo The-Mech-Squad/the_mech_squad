@@ -18,6 +18,13 @@ class TestHomepage(TestCase):
         self.assertEqual(response.status_code, 200)
         
         self.assertTemplateUsed(response, "hal.html")
+        
+    def test_about_html_can_render(self):
+        response = self.client.get("/about/")
+
+        self.assertEqual(response.status_code, 200)
+        
+        self.assertTemplateUsed(response, "about.html")
 
 # from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 # from selenium import webdriver
