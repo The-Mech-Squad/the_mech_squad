@@ -32,6 +32,9 @@ import configparser
 import xlsxwriter
 import time
 from datetime import datetime
+from django.db import models
+from orbital_decay.models import Orbit
+
 
 
 class MyError(Exception):
@@ -71,7 +74,7 @@ TPI86 = 2.0 * PI / 86400.0
 
 # Use configparser package to pull in the ini file (pip install configparser)
 config = configparser.ConfigParser()
-config.read("./SLTrack.ini")
+config.read("./API/SLTrack.ini")
 configUsr = config.get("configuration", "username")
 configPwd = config.get("configuration", "password")
 siteCred = {'identity': configUsr, 'password': configPwd}
@@ -91,23 +94,61 @@ with requests.Session() as session:
         print(resp)
         raise MyError(resp, "GET fail on request for Starlink satellites")
 
-    f = open('api_data.csv', "w")
-    f.write(resp.text)
-    f.close()
+    for sat in resp.content:
+        orbit = Orbit(
+            ORDINAL = sat['ORDINAL'],
+            COMMENT = sat['COMMENT'],
+            ORIGINATOR = sat['ORIGINATOR'],
+            NORAD_CAT_ID = sat['NORAD_CAT_ID'],
+            OBJECT_NAME = sat['OBJECT_NAME'],
+            OBJECT_TYPE = sat['OBJECT_TYPE'],
+            CLASSIFICATION_TYPE = sat['CLASSIFICATION_TYPE'],
+            INTLDES = sat['INTLDES'],
+            EPOCH = sat['EPOCH'],
+            EPOCH_MICROSECONDS = sat['EPOCH_MICROSECONDS'],
+            MEAN_MOTION = sat['MEAN_MOTION'],
+            ECCENTRICITY = sat['ECCENTRICITY'],
+            INCLINATION = sat['INCLINATION'],
+            RA_OF_ASC_NODE = sat['RA_OF_ASC_NODE'],
+            ARG_OF_PERICENTER = sat['ARG_OF_PERICENTER'],
+            MEAN_ANOMALY = sat['MEAN_ANOMALY'],
+            EPHEMERIS_TYPE = sat['EPHEMERIS_TYPE'],
+            ELEMENT_SET_NO = sat['ELEMENT_SET_NO'],
+            REV_AT_EPOCH = sat['REV_AT_EPOCH'],
+            BSTAR = sat['BSTAR'],
+            MEAN_MOTION_DOT = sat['MEAN_MOTION_DOT'],
+            MEAN_MOTION_DDOT = sat['MEAN_MOTION_DDOT'],
+            FILE = sat['FILE'],
+            TLE_LINE0 = sat['TLE_LINE0'],
+            TLE_LINE1 = sat['TLE_LINE1'],
+            TLE_LINE2 = sat['TLE_LINE2'],
+            OBJECT_ID = sat['OBJECT_ID'],
+            OBJECT_NUMBER = sat['OBJECT_NUMBER'],
+            SEMIMAJOR_AXIS = sat['SEMIMAJOR_AXIS'],
+            PERIOD = sat['PERIOD'],
+            APOGEE = sat['APOGEE'],
+            PERIGEE = sat['PERIGEE'],
+            DECAYED = sat['DECAYED'],
+        )
+        orbit.save()
+
+
+    # f = open('api_data.csv', "w")
+    # f.write(resp.text)
+    # f.close()
 
     session.close()
     
 print("Completed API session.....")
 print("Writing Data to Database.....")
 
-conn = psycopg2.connect("host=localhost dbname=sat_data")
-cur = conn.cursor()
-with open('api_data.csv', 'r') as f:
-    # Notice that we don't need the `csv` module.
-    next(f) # Skip the header row.
-    cur.copy_from(f, 'orbits', sep=',')
+# conn = psycopg2.connect("host=localhost dbname=sat_data")
+# cur = conn.cursor()
+# with open('api_data.csv', 'r') as f:
+#     # Notice that we don't need the `csv` module.
+#     next(f) # Skip the header row.
+#     cur.copy_from(f, 'orbits', sep=',')
 
-conn.commit()
+# conn.commit()
 
 print("Complete")
-
