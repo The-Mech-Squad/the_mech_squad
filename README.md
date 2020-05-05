@@ -1,6 +1,6 @@
 # The Mech Squad present:
 
-## Space-Trash
+## Space Trash
 
 [![Build Status](https://travis-ci.org/The-Mech-Squad/the_mech_squad.svg?branch=master)](https://travis-ci.org/The-Mech-Squad/the_mech_squad)
 
@@ -24,7 +24,7 @@ Clone this repository, then run:
 
 ```
 python manage.py migrate
-pythong manage.py runserver
+python manage.py runserver
 ```
 Visit localhost and have a look.
 
