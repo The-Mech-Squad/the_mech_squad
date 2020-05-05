@@ -48,8 +48,7 @@ class MyError(Exception):
 uriBase = "https://www.space-track.org"
 requestLogin = "/ajaxauth/login"
 requestCmdAction = "/basicspacedata/query"
-requestCatalogue = "/class/tle_latest/ORDINAL/1/EPOCH/>now-30/MEAN_MOTION/0.99--1.01/ECCENTRICITY/<0.01/orderby/EPOCH desc/limit/5/format/csv"
-
+requestCatalogue = "/class/tle_latest/ORDINAL/1/EPOCH/>now-30/MEAN_MOTION/>11.25/format/csv"
 
 # Parameters to derive apoapsis and periapsis from mean motion (see https://en.wikipedia.org/wiki/Mean_motion)
 
