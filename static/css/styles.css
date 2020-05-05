@@ -4,7 +4,7 @@
 }
 @font-face {
   font-family: Ikaros;
-  src: url("../fonts/Ikaros-Regular.otf.otf") format("opentype");
+  src: url("../fonts/Ikaros-Regular.otf") format("opentype");
 }
 
 #cesiumContainer{
