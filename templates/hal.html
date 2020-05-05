@@ -10,6 +10,7 @@
   <script src="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Cesium.js"></script>
   <link href="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <link rel="stylesheet" href="{%static '/css/styles.css' %}">
+  <link rel="stylesheet" href="{%static '/css/hal.css' %}">
   <script src="https://kit.fontawesome.com/f34ca161df.js" crossorigin="anonymous"></script>
 </head>
 
@@ -28,26 +29,26 @@
     </div>
   </header>
   <div class="satellite-inner">
-  <div id="cesiumContainer"></div>
-  <script>
-    var viewer = new Cesium.Viewer('cesiumContainer');
-    var dataSrc = Cesium.CzmlDataSource.load("../static/js/simple.czml");
-    viewer.dataSources.add(dataSrc);
-  </script>
-  <div class="left">
-    <div class="search-box">
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" name="" value="">
-        <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
-      </form>
-    </div>
-    <div class="divs">
-      <button type="button" class="btn btn-primary">show closest satellite</button>
-      <button type="button" class="btn btn-primary"><i class="fas fa-undo"></i></button>
+    <div id="cesiumContainer"></div>
+    <script>
+      var viewer = new Cesium.Viewer('cesiumContainer');
+      var dataSrc = Cesium.CzmlDataSource.load("../static/js/simple.czml");
+      viewer.dataSources.add(dataSrc);
+    </script>
+    <div class="left">
+      <div class="search-box">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="search" name="" value="">
+          <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      <div class="divs">
+        <button type="button" class="btn btn-primary">show closest satellite</button>
+        <button type="button" class="btn btn-primary"><i class="fas fa-undo"></i></button>
 
+      </div>
     </div>
   </div>
-</div>
 </body>
 
 </html>
