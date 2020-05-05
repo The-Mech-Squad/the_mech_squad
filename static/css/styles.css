@@ -49,6 +49,7 @@ body{
 }
 .bg-image{
   background-image: url(../assets/orbitview.jpg);
+  background-size: cover;
 }
 .dark-bg{
   background-color: #333;
