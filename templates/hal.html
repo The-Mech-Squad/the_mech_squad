@@ -4,31 +4,36 @@
 <html lang="en">
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<meta charset="utf-8">
-	<script src="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Cesium.js"></script>
-	<link href="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.69/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
   <link rel="stylesheet" href="{%static '/css/styles.css' %}">
   <script src="https://kit.fontawesome.com/f34ca161df.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <h1>Satellite Viewer</h1>
-	<div id="cesiumContainer" ></div>
-	<script>
-		var viewer = new Cesium.Viewer('cesiumContainer');
-		var dataSrc = Cesium.CzmlDataSource.load("../static/js/simple.czml");
-		viewer.dataSources.add(dataSrc);
-	</script>
+  <div id="cesiumContainer"></div>
+  <script>
+    var viewer = new Cesium.Viewer('cesiumContainer');
+    var dataSrc = Cesium.CzmlDataSource.load("../static/js/simple.czml");
+    viewer.dataSources.add(dataSrc);
+  </script>
   <div class="left">
-  <div class="search-box">
-    <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" name="" value="">
-    <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
-  </form>
+    <div class="search-box">
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" name="" value="">
+        <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+    <div class="divs">
+      <button type="button" class="btn btn-primary">show closest satellite</button>
+      <button type="button" class="btn btn-primary"><img src="../static/assets/icons8-home.svg"></button>
+
+    </div>
   </div>
-  <div class="divs"><button type="button" class="btn btn-primary">show closest satellite</button></div>
-</div>
 </body>
 
 </html>
