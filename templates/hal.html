@@ -14,7 +14,19 @@
 </head>
 
 <body>
-  <h1>Satellite Viewer</h1>
+  <header class="masthead mb-auto light-bg ">
+    <div class="inner">
+
+      <nav class="nav nav-masthead justify-content-between">
+        <h3 class="masthead-brand f-left">Satellite Viewer</h3>
+        <div class="f-right">
+          <a class="nav-link active viewer" href="/">Home</a>
+          <a class="nav-link viewer" href="/about">About this Project</a>
+        </div>
+
+      </nav>
+    </div>
+  </header>
   <div id="cesiumContainer"></div>
   <script>
     var viewer = new Cesium.Viewer('cesiumContainer');

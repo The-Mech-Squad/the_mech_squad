@@ -11,6 +11,7 @@
   width: 70%;
   /* height:800px; */
    display: inline-block;
+   padding-top: 20px;
   }
 
 
@@ -40,6 +41,7 @@ body{
   display: inline-block;
   vertical-align: top;
   margin-left: 10px;
+  padding-top: 20px;
 }
 .divs{
   margin-top: 10px;
@@ -51,6 +53,12 @@ body{
   background-color: #333;
   width: 100%;
   opacity: 0.7;
+}
+
+.light-bg{
+  background-color: #fff;
+   opacity: 0.8;
+  color: #333;
 }
 
 .title{
@@ -89,6 +97,10 @@ body{
 
 .inner{
   vertical-align: bottom;
+}
+
+.nav-link.viewer{
+  color: #333;
 }
 /* .f-left{
   float: left

@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="{%static '/css/styles.css' %}">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
       <link rel="stylesheet" href="{%static '/css/styles.css' %}">
       <link rel="stylesheet" href="{%static '/css/about.css' %}">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f34ca161df.js" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <title></title>
@@ -16,20 +17,60 @@
     <div class="cover-container d-flex w-100 h-100 mx-auto flex-column">
       <header class="masthead mb-auto light-bg ">
         <div class="inner">
-  
+
           <nav class="nav nav-masthead justify-content-between">
             <h3 class="masthead-brand f-left">About us</h3>
             <div class="f-right">
               <a class="nav-link active" href="/hal">Hal</a>
               <a class="nav-link" href="/">Home</a>
             </div>
-  
+
           </nav>
         </div>
       </header>
-  
-      <main class="inner cover">
-       </main></main>
+      <div class="container">
+        <div class="text-left">
+        <h2>  The idea</h2>
+<p>A long time ago, in a galaxy far far away, a group of Makers decided to create an application. Its mission? To create a predictive model which could help solve the problem of space debris</p>
+
+<p>The initial goal was to use machine learning to predict the optimal orbit for a sweeper that would remove the items that are cluttering up our thermosphere. As a first iteration of this project, Space_Trash 1.0, is currently able to:</p>
+<ul>
+  <li>
+fetch TLE data from space-track.org's API.</li>
+<li>
+import it to a local database.</li>
+<li>
+render the data to a model of the earth, using Cesium.js.</li>
+<li>
+let the user input the predictions they would like our model, How2, to make for objects of their choice.</li>
+<li>
+generate predictions and accuracy metrics for a machine learning model, using the linear regression algorithm.</li>
+</ul>
+
+<h2>User interaction</h2>
+<p>As a user on the site, you can tell How2 what he should be predicting and which values he should be using to make his predictions. Not only will you be able to see his expected results but you'll also be able to see how accurate his predictions were.</p>
+
+<h2>Design decisions</h2>
+<p>To help provide context for the project we opted to have a landing page that would explain the concept and briefly outline the actions that a user could take.</p>
+
+<p>We implemented a postgres database that would be populated by the API once every 24 hours. The goal was to streamline the amount of calls we made to the API since the amount of data being processed could affect the speed of the application.</p>
+
+<p>The visualisation that displays the satellite data to the user requires a great deal of processing power so we decided to limit the number of objects that could be displayed at one time. A user can search for a specific object which can render in another's place.</p>
+
+<h2>Technologies used</h2>
+<ul>
+  <li> Django </li>
+  <li>    Python </li>
+  <li>    D3 </li>
+  <li>     Tensorflow </li>
+    <li>   Anaconda </li>
+    <li>   Cesium </li>
+    <li>   Travis</li>
+    <li>    Heroku </li>
+    <li>    PostgreSQL</li>
+  </ul>
+        </div>
+      </div>
     </div>
   </body>
 </html>

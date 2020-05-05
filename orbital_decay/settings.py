@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(!@i(j$f@mr6kw-8cdg2#v#q8molh4-6k*mj_0hir0ikbc7-jh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'space-trash.herokuapp.com',
@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # 'whitenoise.runserver_nostatic', 
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'showcase',
 ]
