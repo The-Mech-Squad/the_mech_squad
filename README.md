@@ -2,7 +2,7 @@
 
 ## Space-Trash
 
-The educational application that visualises satellites and space debris, using machine learning to try and predict the future state of these objects.
+The educational application that visualises satellites and space debris, using machine learning to try and predict what these objects could look like in the future.
 
 ### The idea
 
@@ -10,10 +10,11 @@ A long time ago, in a galaxy far far away, a group of Makers decided to create a
 
 The initial goal was to use machine learning to predict the optimal orbit for a sweeper that would remove the items that are cluttering up our thermosphere. As a first iteration of this project, Space_Trash 1.0, is currently able to:
 
-* fetch TLE data from space-track.org's API
-* import it to a local database
-* render the data to a model of the earth, using Cesium.js
-* let the user input the predictions they would like our model How2 to make based on objects of their choice.
+* fetch TLE data from space-track.org's API.
+* import it to a local database.
+* render the data to a model of the earth, using Cesium.js.
+* let the user input the predictions they would like our model, How2, to make for objects of their choice.
+* generate predictions and accuracy metrics for a machine learning model, using the linear regression algorithm.
 
 ### To run the application locally
 
@@ -50,12 +51,12 @@ The visualisation that displays the satellite data to the user requires a great 
 
 ### Technologies used
 
-• Django • Python • D3 • Tensorflow • Anaconda • Cesium • Travis • Heroku
+• Django • Python • D3 • Tensorflow • Anaconda • Cesium • Travis • Heroku • PostgreSQL
 
 ### Resources
 
 We are indebted to the following services and sources:
 
-* [Tech with Tim and his series on machine learning in python](https://www.youtube.com/playlist?list=PLzMcBGfZo4-mP7qA9cagf68V06sko5otr)
+* [Tech with Tim and his series on machine learning in Python](https://www.youtube.com/playlist?list=PLzMcBGfZo4-mP7qA9cagf68V06sko5otr)
 * [Cesium](https://cesium.com/)
 * [The study from Hao Peng & Xiaoli Bai named: "Comparative evaluation of three machine learning algorithms on improving orbit prediction accuracy"](https://link.springer.com/article/10.1007/s42064-018-0055-4)
