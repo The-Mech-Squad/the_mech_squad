@@ -73,7 +73,7 @@ requestCatalogue = "/class/tle_latest/ORDINAL/1/EPOCH/>now-30/MEAN_MOTION/>11.25
 
 # Use configparser package to pull in the ini file (pip install configparser)
 config = configparser.ConfigParser()
-config.read("./SLTrack.ini")
+config.read("./API/SLTrack.ini")
 configUsr = config.get("configuration", "username")
 configPwd = config.get("configuration", "password")
 siteCred = {'identity': configUsr, 'password': configPwd}
@@ -93,7 +93,7 @@ with requests.Session() as session:
         print(resp)
         raise MyError(resp, "GET fail on request for Starlink satellites")
 
-    f = open('api_data.csv', "w")
+    f = open('./API/api_data.csv', "w")
     f.write(resp.text)
     f.close()
 
@@ -104,7 +104,7 @@ print("Writing Data to Database.....")
 
 conn = psycopg2.connect("host=localhost dbname=sat_data")
 cur = conn.cursor()
-with open('api_data.csv', 'r') as f:
+with open('./API/api_data.csv', 'r') as f:
     # Notice that we don't need the `csv` module.
     next(f) # Skip the header row.
     cur.copy_from(f, 'orbits', sep=',')

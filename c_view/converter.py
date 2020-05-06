@@ -19,6 +19,7 @@ try:
     cursor = connection.cursor()
     postgreSQL_select_Query = "select TLE_LINE0, TLE_LINE1, TLE_LINE2 from orbits"
 
+    cursor.execute("TRUNCATE orbits")
     cursor.execute(postgreSQL_select_Query)
     print("Fetching TLE Data from Database")
     orbits = cursor.fetchall() 
