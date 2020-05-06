@@ -17,8 +17,9 @@
   <h1>Satellite Viewer</h1>
   <div id="cesiumContainer"></div>
   <script>
+    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzOTMyZjQ2NC01OTUyLTRiYjgtYWU5MC01YTJlMzgyNmI2MzYiLCJpZCI6MjY5MTEsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODg1ODA5NzB9.PfmN9BfkSaXP_piM-fwQO_ZSPblnp-jEUmVAVFm-SQ4'
     var viewer = new Cesium.Viewer('cesiumContainer');
-    var dataSrc = Cesium.CzmlDataSource.load("../static/js/simple.czml");
+    var dataSrc = Cesium.CzmlDataSource.load("../static/js/orbit.czml");
     viewer.dataSources.add(dataSrc);
   </script>
   <div class="left">

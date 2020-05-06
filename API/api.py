@@ -48,15 +48,17 @@ class MyError(Exception):
 uriBase = "https://www.space-track.org"
 requestLogin = "/ajaxauth/login"
 requestCmdAction = "/basicspacedata/query"
-requestCatalogue = "/class/tle_latest/ORDINAL/1/EPOCH/>now-30/MEAN_MOTION/>11.25/format/csv"
+requestCatalogue = "/class/tle_latest/ORDINAL/1/EPOCH/>now-30/MEAN_MOTION/>11.25/orderby/EPOCH desc/limit/22/format/csv"
+
+
 
 # Parameters to derive apoapsis and periapsis from mean motion (see https://en.wikipedia.org/wiki/Mean_motion)
 
-GM = 398600441800000.0
-GM13 = GM ** (1.0/3.0)
-MRAD = 6378.137
-PI = 3.14159265358979
-TPI86 = 2.0 * PI / 86400.0
+# GM = 398600441800000.0
+# GM13 = GM ** (1.0/3.0)
+# MRAD = 6378.137
+# PI = 3.14159265358979
+# TPI86 = 2.0 * PI / 86400.0
 
 # ACTION REQUIRED FOR YOU:
 #=========================
