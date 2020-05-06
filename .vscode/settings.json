@@ -1,7 +1,8 @@
 {
 
-  "python.pythonPath": "/Users/patrickoliver/opt/anaconda3/envs/mech/bin/python",
-  "python.formatting.provider": "yapf"
+  "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3",
+  "python.formatting.provider": "yapf",
+  "git.ignoreLimitWarning": true
 
     // "python.pythonPath": "/opt/anaconda3/bin/python"
 
