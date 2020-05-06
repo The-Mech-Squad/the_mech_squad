@@ -32,10 +32,7 @@ import configparser
 import xlsxwriter
 import time
 from datetime import datetime
-from django.db import models
 from orbital_decay.models import Orbit
-
-
 
 class MyError(Exception):
     def __init___(self, args):
@@ -138,7 +135,7 @@ with requests.Session() as session:
     # f.close()
 
     session.close()
-    
+
 print("Completed API session.....")
 print("Writing Data to Database.....")
 
