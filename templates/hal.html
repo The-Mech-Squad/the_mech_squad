@@ -11,6 +11,13 @@
   <link href="{%static '../static/js/Cesium/Widgets/widgets.css' %}" rel="stylesheet">
   <link rel="stylesheet" href="{%static '/css/styles.css' %}">
   <script src="https://kit.fontawesome.com/f34ca161df.js" crossorigin="anonymous"></script>
+  <script src="{%static '../static/js/jquery-3.5.1.min.js' %}"></script>
+  <script src="{%static '../static/js/homepage.js' %}"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.mjs"></script>
+  <script type="module">
+    import Cookies from "https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.mjs"
+    var csrftoken = Cookies.get('csrftoken');
+  </script>
 </head>
 
 <body>
@@ -25,8 +32,8 @@
   <div class="left">
     <div class="search-box">
       <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" name="" value="">
-        <button type="submit" class="btn btn-outline-secondary"><i class="fa fa-search"></i></button>
+        <input class="form-control mr-sm-2" type="search" name="" value="" id="search-box">
+        <button type="submit" class="btn btn-outline-secondary" id="search-button"><i class="fa fa-search"></i></button>
       </form>
     </div>
     <div class="divs">
